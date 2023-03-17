@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -12,6 +12,8 @@ export interface ButtonProps {
 }
 
 export function Button({ text, onClick }: ButtonProps) {
+  const [test, setTest] = useState();
+
   return (
     <TouchableOpacity style={styles.button} onPress={onClick}>
       <Text style={styles.text}>{text}</Text>
