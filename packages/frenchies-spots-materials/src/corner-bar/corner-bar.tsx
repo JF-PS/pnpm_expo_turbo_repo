@@ -15,16 +15,21 @@ interface CornerBarProps {
 export const CornerBar = (props: CornerBarProps) => {
   const {
     children,
-    color = "black",
+    color,
     mode = "bottom",
     cornerWidth = 50,
     cornerHeight = 50,
   } = props;
+
   const style = styles(color, mode);
+
+  const cornerbarContent = <Box style={style.cornerbarContent}>{children}</Box>;
 
   return (
     <Box style={style.container}>
-      <Box style={style.navbarContainer}>
+      <Box style={style.cornerbarContainer}>
+        {mode === "top" && cornerbarContent}
+
         <HStack style={style.cornersContainer} justify="between">
           <CornerItem
             mode={`${mode}Left`}
@@ -40,7 +45,7 @@ export const CornerBar = (props: CornerBarProps) => {
           />
         </HStack>
 
-        <Box style={style.navbarContent}>{children}</Box>
+        {mode === "bottom" && cornerbarContent}
       </Box>
     </Box>
   );

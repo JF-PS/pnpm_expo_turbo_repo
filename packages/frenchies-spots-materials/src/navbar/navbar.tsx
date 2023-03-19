@@ -1,11 +1,20 @@
 import React from "react";
 import { HStack } from "../stack";
-import { CornerBar } from "../corner-bar";
+import { styles } from "./navbar-styles";
+import { NavbarButton } from "./navbar-button";
 
-export const Navbar = () => {
+interface NavbarProps {}
+
+export const Navbar = (props: NavbarProps) => {
+  const { ...other } = props;
+
   return (
-    <CornerBar mode="bottom" color={"purple"}>
-      {/* <HStack justify="between" style={{ height: 60 }}></HStack> */}
-    </CornerBar>
+    <HStack style={styles.navbar} justify="around" mv={15}>
+      <NavbarButton name="search" color="white" isSelected={true} />
+      <NavbarButton name="search" color="white" />
+      <NavbarButton name="search" color="white" />
+      <NavbarButton name="search" color="white" />
+      <NavbarButton name="search" color="white" />
+    </HStack>
   );
 };

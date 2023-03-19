@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
+import { theme } from "@frenchies-spots/theme";
 
-export const styles = (color: string, mode: "top" | "bottom") =>
+const defaultColor = theme.TFS.colors.darkPurple;
+
+export const styles = (
+  color: string | undefined = defaultColor,
+  mode: "top" | "bottom"
+) =>
   StyleSheet.create({
     container: {
       height: mode === "bottom" ? "100%" : "auto",
@@ -13,10 +19,10 @@ export const styles = (color: string, mode: "top" | "bottom") =>
     cornersContainer: {
       width: "100%",
     },
-    navbarContainer: {
+    cornerbarContainer: {
       width: "100%",
     },
-    navbarContent: {
+    cornerbarContent: {
       backgroundColor: color,
     },
   });
