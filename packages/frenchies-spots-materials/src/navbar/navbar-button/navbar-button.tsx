@@ -10,7 +10,13 @@ interface NavbarButtonProps
 }
 
 export const NavbarButton = (props: NavbarButtonProps) => {
-  const { name, size = 20, color, isSelected = false, ...other } = props;
+  const {
+    name,
+    size = 20,
+    color = "white",
+    isSelected = false,
+    ...other
+  } = props;
 
   const style = styles(isSelected);
   return (

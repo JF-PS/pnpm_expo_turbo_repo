@@ -8,3 +8,4 @@ export * from "./stack";
 export * from "./corner-bar";
 export * from "./navbar";
 export * from "./icon";
+export * from "./drawer";
