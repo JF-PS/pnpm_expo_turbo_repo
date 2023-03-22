@@ -4,21 +4,18 @@ export const styles = StyleSheet.create({
   swiperLayout: {
     width: "100%",
     height: "100%",
+    paddingHorizontal: 16,
+    paddingTop: 96,
   },
   buttonBar: {
     width: "100%",
-    bottom: 0,
     borderWidth: 2,
     borderColor: "blue",
-  },
-  titleContainer: {
-    width: "100%",
-    height: 50,
-    display: "flex",
-    justifyContent: "center",
+    height: 60,
     alignItems: "center",
   },
   content: {
+    flex: 1,
     width: "100%",
     borderWidth: 4,
   },

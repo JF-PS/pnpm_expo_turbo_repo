@@ -12,17 +12,21 @@ export const useSwiper = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (swiperRef && swiperRef?.current) {
+    if (swiperRef?.current?.getCurrentIndex) {
       const index = swiperRef.current.getCurrentIndex();
       setCurrentIndex(index);
     }
-  }, [swiperRef]);
+  }, [swiperRef?.current?.getCurrentIndex]);
 
-  const goToIndex = useCallback((index: number) => {
-    if (swiperRef && swiperRef?.current) {
-      swiperRef.current.scrollToIndex({ index });
-    }
-  }, []);
+  const goToIndex = useCallback(
+    (index: number) => {
+      if (swiperRef && swiperRef?.current) {
+        swiperRef.current.scrollToIndex({ index });
+        setCurrentIndex(index);
+      }
+    },
+    [currentIndex]
+  );
 
   const goToNextIndex = useCallback(() => {
     if (swiperRef && swiperRef?.current) {
@@ -38,7 +42,7 @@ export const useSwiper = () => {
       swiperRef.current.scrollToIndex({ index });
       setCurrentIndex(index);
     }
-  }, []);
+  }, [currentIndex]);
 
   const goToFirstIndex = useCallback(() => {
     if (swiperRef && swiperRef?.current) {
@@ -52,6 +56,13 @@ export const useSwiper = () => {
     }
   }, []);
 
+  const getCurrentIndex = useCallback(() => {
+    if (swiperRef && swiperRef?.current) {
+      return swiperRef.current.getCurrentIndex();
+    }
+    return null;
+  }, []);
+
   return {
     swiperRef,
     currentIndex,
@@ -60,5 +71,6 @@ export const useSwiper = () => {
     goToPrevIndex,
     goToFirstIndex,
     goToLastIndex,
+    getCurrentIndex,
   };
 };

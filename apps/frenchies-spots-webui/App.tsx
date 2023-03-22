@@ -12,7 +12,7 @@ export default function Native() {
       <View style={styles.container}>
         <NavigationContainer>
           <RootNavigator />
-          {/* <StatusBar style="auto" /> */}
+          <StatusBar hidden={true} />
         </NavigationContainer>
       </View>
     </Provider>

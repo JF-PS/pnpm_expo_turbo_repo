@@ -1,59 +1,51 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   Box,
-  Text,
   CornerBar,
   Swiper,
   useSwiper,
-  HStack,
-  ButtonBase,
+  PaginationSwiper,
 } from "@frenchies-spots/materials";
-
-import { styles } from "./create-spot-page-styles";
+import { SwiperLayout } from "./swiper/swiper-layout";
+import { pagesList } from "./swiper/swiper-pages";
 
 export const CreateSpotPage = () => {
-  const { swiperRef, currentIndex, goToNextIndex, goToPrevIndex } = useSwiper();
+  const { swiperRef, currentIndex, goToNextIndex, goToPrevIndex, goToIndex } =
+    useSwiper();
 
-  const SwiperLayout = ({ children }: { children: ReactNode }) => {
-    console.log({ currentIndex });
-    console.log({ max: SwipItems.length });
-    return (
-      <Box style={styles.swiperLayout}>
-        {children}
-        <HStack style={styles.buttonBar}>
-          <ButtonBase onPress={goToPrevIndex} disabled={currentIndex === 0}>
-            Retour
-          </ButtonBase>
-          <ButtonBase
-            onPress={goToNextIndex}
-            disabled={currentIndex === SwipItems.length - 1}
-          >
-            Suivant
-          </ButtonBase>
-        </HStack>
-      </Box>
-    );
-  };
+  const handleSubmit = () => {};
 
-  const SwipItems = [
-    <SwiperLayout>
-      <Text>Première Page</Text>
-    </SwiperLayout>,
-    <SwiperLayout>
-      <Text>Deuxième Page</Text>
-    </SwiperLayout>,
-    <SwiperLayout>
-      <Text>Troisième Page</Text>
-    </SwiperLayout>,
-    <SwiperLayout>
-      <Text>Quatrième Page</Text>
-    </SwiperLayout>,
-  ];
+  const swiperList = pagesList({ goToNextIndex, onSubmitForm: handleSubmit });
 
   return (
     <Box style={{ width: "100%", height: "100%" }}>
-      {/* <CornerBar mode="top" /> */}
-      <Swiper swiperRef={swiperRef} items={SwipItems} />
+      <CornerBar mode="top">
+        <PaginationSwiper
+          nb={swiperList.length}
+          goToIndex={goToIndex}
+          swiperIndex={currentIndex}
+        />
+      </CornerBar>
+
+      <Swiper
+        swiperRef={swiperRef}
+        items={swiperList.map((page) => {
+          const { render, prevLabel, nextLabel, onComfirm } = page;
+          return (
+            <SwiperLayout
+              prevLabel={prevLabel}
+              nextLabel={nextLabel}
+              swiperIndex={currentIndex}
+              lastIndex={swiperList.length - 1}
+              isNextDisable={page?.isNextDisable}
+              goToPrevIndex={goToPrevIndex}
+              onComfirm={onComfirm}
+            >
+              {render}
+            </SwiperLayout>
+          );
+        })}
+      />
     </Box>
   );
 };

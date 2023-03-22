@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import {
+  Box,
   CornerBar,
   Navbar as NavbarMaterial,
   NavbarButton,

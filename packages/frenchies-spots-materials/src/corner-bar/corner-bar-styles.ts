@@ -9,6 +9,7 @@ export const styles = (
 ) =>
   StyleSheet.create({
     container: {
+      zIndex: 10,
       height: mode === "bottom" ? "100%" : "auto",
       width: "100%",
       position: "absolute",

@@ -10,3 +10,4 @@ export * from "./navbar";
 export * from "./icon";
 export * from "./drawer";
 export * from "./swiper";
+export * from "./pagination";
